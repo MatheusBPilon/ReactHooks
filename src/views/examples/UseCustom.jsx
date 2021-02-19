@@ -2,18 +2,19 @@ import React from 'react'
 import PageTitle from '../../components/layout/PageTitle'
 import SectionTitle from '../../components/layout/SectionTitle'
 import { useCounter } from '../../hooks/useCounter'
+import '../../hooks/fetch.css'
 import { useFetch } from '../../hooks/useFetch'
 const UseRef = (props) => {
 
     const [count, inc, dec] = useCounter(10)
-    
+
     const url = 'http://files.cod3r.com.br/curso-react/estados.json'
-    let amizade = useFetch(url).then((response) => response)
-    console.log(amizade)
-    
-    const showStats = (response) => {
-        return response.map(state => <li>{state.nome} - {state.sigla}</li>)
+    const response = useFetch(url)
+
+    function showStats(states) {
+        return states.map(state => <tr><td className="tr">{state.nome}</td><td>{state.sigla}</td></tr>)
     }
+
 
     return (
         <div className="UseCustom">
@@ -30,9 +31,16 @@ const UseRef = (props) => {
 
             <SectionTitle title="Custom hooks #02" />
             <div className="center">
-                <ul>
-                    {showStats}
-                </ul>
+                <table className="tabela">
+                    <th>Nome</th>
+                    <th>Sigla</th>
+
+                   
+                      
+                    {response.data ? showStats(response.data):false}
+                   
+                    
+                </table>
             </div>
         </div>
     )

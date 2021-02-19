@@ -1,0 +1,15 @@
+.tabela{
+    
+    border: 1px solid black;
+
+}
+
+td{
+    border: 1px solid black;
+    background-color: rgb(47, 189, 54);
+}
+
+.tabela th{
+    border: 1px solid black;
+    background:green;
+}
